@@ -24,3 +24,5 @@ http://localhost:8484/webjars/swagger-ui/index.html?urls.primaryName=Swagger%20S
 http://localhost:8484/bzn-exemplo-services-users/v1/h2-console
 
 http://localhost:8484/webjars/swagger-ui/index.html
+
+https://springdoc.org/properties.html#google_vignette
