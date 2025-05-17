@@ -41,12 +41,14 @@ ENV APP_SERVER_CERTIFICATE=$ARG_APP_SERVER_CERTIFICATE
 ENV APP_SERVER_CERTIFICATE_ALIAS=$ARG_APP_SERVER_CERTIFICATE_ALIAS
 ENV JAVA_CACERTS==/usr/lib/jvm/openjdk:24-slim/jre/lib/security/cacerts
 
+
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 # Copia certificado publico do servidor
-COPY $APP_SERVER_CERTIFICATE ./
+COPY $APP_SERVER_CERTIFICATE /app
 # importa o certificado do servidor para o keystore padrão do Java
-RUN keytool -importcert -file $APP_SERVER_CERTIFICATE -alias $APP_SERVER_CERTIFICATE_ALIAS -keystore $JAVA_CACERTS -storepass changeit -noprompt
+#RUN keytool -importcert -file $APP_SERVER_CERTIFICATE -alias $APP_SERVER_CERTIFICATE_ALIAS -keystore $JAVA_CACERTS -storepass changeit -noprompt
+RUN keytool -importcert -file $APP_SERVER_CERTIFICATE -alias $APP_SERVER_CERTIFICATE -cacerts -storepass changeit -noprompt
 # Copia o jar compilado da etapa anterior
 COPY --from=build /app/${JAR_FILE} app.jar
 
