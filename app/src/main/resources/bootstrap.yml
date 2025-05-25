@@ -9,5 +9,8 @@ spring:
       fail-fast: true
       username: ${CONFIG_SERVER_USER}
       password: ${CONFIG_SERVER_PASS}
+      #discovery:
+        #enabled: true
+        #serviceId: bzn-cos-services
     compatibility-verifier:
       enabled: false
